@@ -20,6 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+/// <reference path="../../index.d.ts" />
+
 import { LineDefs, WADFileBase } from "@/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 import fs from "node:fs";
@@ -51,7 +53,7 @@ export default async function getLineDefs(
 
             lineDefProvider = async () => {
                 const wadFileData = await readFile(
-                    path.join(__dirname, '../../../../wads/doom.wad')
+                    path.join(request.appRoot, '/wads/doom.wad')
                 );
 
                 const doom1wad = WADFileBase.fromBuffer(wadFileData);
@@ -69,7 +71,7 @@ export default async function getLineDefs(
 
             lineDefProvider = async () => {
                 const wadFileData = await readFile(
-                    path.join(__dirname, '../../../../wads/doom2.wad')
+                    path.join(request.appRoot, '/wads/doom2.wad')
                 );
 
                 const doom2wad = WADFileBase.fromBuffer(wadFileData);
